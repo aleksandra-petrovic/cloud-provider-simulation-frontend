@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<header>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a [routerLink]="'/'" class="navbar-brand">nwp-domaci3</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a [routerLink]="'/auth/login'" class="nav-link active" aria-current="page">log in</a></li>
+            <li class="active"><a [routerLink]="'/'" class="nav-link active" aria-current="page">home</a></li>
+            <li><a [routerLink]="'/home/users'" class="nav-link active" aria-current="page">users</a></li>
+            <li><a [routerLink]="'/home/users/add-user'" class="nav-link active" aria-current="page">add user</a></li>
+            <li><a [routerLink]="'/machines/search'" class="nav-link active" aria-current="page">search machines</a></li>
+            <li><a [routerLink]="'/machines/create'" class="nav-link active" aria-current="page">create machine</a></li>
+            <li><a [routerLink]="'/machines/history'" class="nav-link active" aria-current="page">history</a></li>
+
+        </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="container-1">
+  <router-outlet></router-outlet>
+</div>

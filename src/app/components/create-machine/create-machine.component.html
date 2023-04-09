@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+
+  <div *ngIf="granted; else elseBlock">
+
+    <form [formGroup]="createForm" (submit)="create()" class="mb-5">
+        <div class="form-group">
+        <label for="name">machine name</label>
+        <input type="text" class="form-control" id="name" placeholder="machine name" [formControlName]="'machineName'">
+        </div>
+        <button [disabled]="!createForm.valid" type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>  
+  <ng-template #elseBlock>
+      <h3><a [routerLink]="'/'" class="nav-link active" aria-current="page">go to home page</a></h3>
+  </ng-template>
+
+</body>
+</html>

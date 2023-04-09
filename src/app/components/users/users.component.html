@@ -1,0 +1,70 @@
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<div>
+  <div *ngFor="let user of users; let i = index;" class="mb-2">
+    <h5>{{ i+1 }}. {{ user.name }} {{ user.surname }} <a [routerLink]="'/home/users/edit-user/'+user.userId">{{ user.email }}</a>  <button [disabled]="!candelete" (click)="deleteUser(user.userId)"> delete </button></h5>
+    <h6>permissions:</h6>
+    <div *ngFor="let permission of user.permissions;" class="mb-3">
+      <h6>{{permission.permission}}</h6>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">surname</th>
+        <th scope="col">email</th>
+        <th scope="col">delete</th>
+        <th scope="col">permissions</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let user of users; let i = index;">
+          <td>{{ i+1 }}.</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.surname }}</td>
+          <td><a [routerLink]="'/home/users/edit-user/'+user.userId">{{ user.email }}</a></td>
+          <td><button [disabled]="!candelete" (click)="deleteUser(user.userId)"> delete </button></td>
+          <div *ngFor="let permission of user.permissions;"><td>{{permission.permission}}</td></div>
+        </tr>
+        
+    </tbody>
+  </table>
+</body>
+</html>

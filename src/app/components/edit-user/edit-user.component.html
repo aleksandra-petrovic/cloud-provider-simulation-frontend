@@ -1,0 +1,70 @@
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+
+    .masterdiv {
+        padding: 70px 70px;
+        text-align: center;
+    }
+</style>
+
+<div class="masterdiv">
+<div class="jumbotron text-center">
+    <h1>edit user page</h1>
+    <p>here you can modify user with id {{id}}</p> 
+</div>
+
+<div *ngIf="granted; else elseBlock">
+    <div class="container-1">
+        <form [formGroup]="editForm" (submit)="editUser()" class="mb-5">
+            <div class="form-group">
+              <label for="name">name</label>
+              <input type="text" class="form-control" id="name" placeholder={{user.name}} [formControlName]="'name'">
+            </div>
+            <div class="form-group">
+              <label for="surname">surname</label>
+              <input type="text" class="form-control" id="surname" placeholder={{user.surname}} [formControlName]="'surname'">
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="text" class="form-control" id="email" placeholder={{user.email}} [formControlName]="'email'">
+            </div>
+    
+    
+    
+            <div class="form-group">
+                <label for="can_read_users">can_read_users</label>
+                <input type="checkbox" [checked]="permissions.includes('can_read_users')" class="form-control" id="can_read_users" placeholder="can_read_users" [formControlName]="'can_read_users'" >
+            </div>
+            
+            <div class="form-group">
+                <label for="can_update_users">can_update_users</label>
+                <input type="checkbox" [checked]="permissions.includes('can_update_users')" class="form-control" id="can_update_users" placeholder="can_update_users" [formControlName]="'can_update_users'">
+            </div>
+    
+            <div class="form-group">
+                <label for="can_delete_users">can_delete_users</label>
+                <input type="checkbox" [checked]="permissions.includes('can_delete_users')" class="form-control" id="can_delete_users" placeholder="can_delete_users" [formControlName]="'can_delete_users'">
+            </div>
+    
+            <div class="form-group">
+                <label for="can_create_users">can_create_users</label>
+                <input type="checkbox" [checked]="permissions.includes('can_create_users')" class="form-control" id="can_create_users" placeholder="can_create_users" [formControlName]="'can_create_users'">
+            </div>
+    
+    
+            <button [disabled]="!editForm.valid" type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+    <br />
+    <br />
+    </div>
+</div>
+<ng-template #elseBlock>
+    <h3><a [routerLink]="'/'" class="nav-link active" aria-current="page">go to home page</a></h3>
+</ng-template>
+

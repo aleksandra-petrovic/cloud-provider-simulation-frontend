@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">date</th>
+            <th scope="col">machine id</th>
+            <th scope="col">operation</th>
+            <th scope="col">description</th>
+          </tr>
+        </thead>
+        <tbody>
+    
+            <tr *ngFor="let errorMsg of errors; let i = index;">
+              <td>{{ errorMsg.errorId }}</td>
+              <td>{{ errorMsg.date }}</td>
+              <td>{{ errorMsg.machineId }}</td>
+              <td>{{ errorMsg.operation }}</td>
+              <td>{{ errorMsg.description }}</td>
+            </tr>
+            
+        </tbody>
+      </table>
+
+
+</body>
+</html>

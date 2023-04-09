@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+<body>
+
+<div *ngIf="granted; else elseBlock">
+
+  <h3>search machines</h3>
+
+  <form [formGroup]="searchForm" (submit)="search()" class="mb-5">
+    <div class="form-group">
+      <label for="machineName">machineName</label>
+      <input type="text" class="form-control" id="machineName" placeholder="machineName" [formControlName]="'machineName'">
+    </div>
+    <div class="form-group">
+      <label for="dateFrom">dateFrom</label>
+      <input type="text" class="form-control" id="dateFrom" placeholder="Example: 25-01-2023" [formControlName]="'dateFrom'">
+    </div>
+    <div class="form-group">
+        <label for="dateTo">dateTo</label>
+        <input type="text" class="form-control" id="dateTo" placeholder="Example: 25-01-2023" [formControlName]="'dateTo'">
+    </div>
+
+    <div class="form-group">
+        <label for="status1">STOPPED</label>
+        <input type="checkbox" class="form-control" id="status1" placeholder="STOPPED" [formControlName]="'status1'" >
+    </div>
+    <div class="form-group">
+        <label for="status2">RUNNING</label>
+        <input type="checkbox" class="form-control" id="status2" placeholder="RUNNING" [formControlName]="'status2'">
+    </div>
+    
+
+    <button [disabled]="!searchForm.valid" type="submit" class="btn btn-primary">Submit</button>
+
+  </form>
+
+  <h3>schedule operation</h3>
+
+  <form [formGroup]="scheduleForm" (submit)="schedule()" class="mb-5">
+    <div class="form-group">
+      <label for="machineId">machineId</label>
+      <input type="number" class="form-control" id="machineId" placeholder="machineId" [formControlName]="'machineId'">
+    </div>
+    <div class="form-group">
+      <label for="date">date</label>
+      <input type="text" class="form-control" id="date" placeholder="Example: 25-01-2023 15:05" [formControlName]="'scheduleDate'">
+    </div>
+
+    <div class="form-group">
+        <label for="op1">start</label>
+        <input name="operation" type="radio" class="form-control" id="start" placeholder="start" value="start" [formControlName]="'operation'" >
+    </div>
+    <div class="form-group">
+        <label for="op2">stop</label>
+        <input name="operation" type="radio" class="form-control" id="stop" placeholder="stop" value="stop" [formControlName]="'operation'">
+    </div>
+    <div class="form-group">
+      <label for="op3">restart</label>
+      <input name="operation" type="radio" class="form-control" id="restart" placeholder="restart" value="restart" [formControlName]="'operation'">
+  </div>
+
+    <button [disabled]="!scheduleForm.valid" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">status</th>
+        <th scope="col">active</th>
+        <th scope="col">created</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let machine of machines; let i = index;">
+          <td>{{ machine.machineId }}</td>
+          <td>{{ machine.name }}</td>
+          <td>{{ machine.status }}</td>
+          <td>{{ machine.active }}</td>
+          <td>{{ machine.dateCreated }}</td>
+          <td><button [disabled]="!canstart" (click)="update(machine.machineId, 'start')"> start </button></td>
+          <td><button [disabled]="!canstop" (click)="update(machine.machineId,'stop')"> stop </button></td>
+          <td><button [disabled]="!canrestart" (click)="update(machine.machineId,'restart')"> restart </button></td>
+          <td><button [disabled]="!candestroy" (click)="destroy(machine.machineId)"> destroy </button></td>
+        </tr>
+        
+    </tbody>
+  </table>
+</div>
+<ng-template #elseBlock>
+  <h3><a [routerLink]="'/'" class="nav-link active" aria-current="page">go to home page</a></h3>
+</ng-template>
+
+
+</body>
+</html>
+
